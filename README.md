@@ -1,6 +1,6 @@
 # Online-Shope
 
-Online-Shope is a robust e-commerce platform built using Node.js, MongoDB, jQuery, and EJS. It provides a seamless shopping experience and efficient backend functionality.
+Online-Shope is a robust e-commerce platform built using Node.js, MongoDB, jQuery, and EJS. It provides a seamless shopping experience and efficient backend functionality. The platform frontend templates are in Persian (Farsi) language.
 
 ## Getting Started
 
