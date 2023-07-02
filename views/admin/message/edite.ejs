@@ -1,0 +1,65 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrapfour.min.css" rel="stylesheet">
+    <link href="/css/bootstrapfour-rtl.min.css" rel="stylesheet">
+    <title>ایجاد پیام جدید</title>
+</head>
+
+<body>
+
+
+    <div class="container">
+        
+        <% if( errors.length > 0)  { %>
+            <div class="row">
+                <% errors.forEach(error=>{ %>
+                <div class="col-md-12" style="color: red; font-size: x-large; float: right; margin-right: 10px;">
+                    <%- error.msg %>
+                </div>
+                <%})%>
+            </div>
+            <br>
+            <% }%>
+
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <h2>ایجاد پیام جدید</h2>
+        </div>
+        <form class="form-horizontal" method="POST" action="/admin/message/edite/<%- message.id %>">
+
+
+            <div class="form-group">
+                <label for="topic" class="control-label">موضوع پیام </label>
+                <input id="topic" value="<%- message.topic %>" type="tipic" class="form-control" name="topic">
+            </div>
+
+
+            <div class="form-group">
+                <label for="user" class="control-label">فرستادن به</label>
+                <select name="user" id="user" class="form-control">
+                    <option value="ALL"> همه فروشندگان </option>
+                    <% seller.forEach(seller =>{ %>
+                    <option value="<%- seller.id %>" <%- seller.id == message.user ? 'selected' : '' %>> <%- seller.fullName %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+
+            
+            <div class="form-group">
+                <label for="body" class="control-label"> متن پیام </label>
+                <textarea name="body" id="body" class="form-control" rows="10"><%- message.body %></textarea>
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">ویرایش پیام</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

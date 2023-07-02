@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>پنل مدیریت | صفحه صورتحساب</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/sellerAdmin/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <!-- bootstrap rtl -->
+    <link rel="stylesheet" href="/sellerAdmin/dist/css/bootstrap-rtl.min.css">
+    <!-- template rtl version -->
+    <link rel="stylesheet" href="/sellerAdmin/dist/css/custom-style.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+   
+
+        <!-- -__-_-__--__-_-__--__-_-__--__-_-__--__-_-__--__-_-__--__-_-__--__-_-__--__-_-__--__-_-__--__-_-__--__-_-__- -->
+        <!-- Content Wrapper. Contains page content -->
+        <div >
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>صورتحساب</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                <li class="breadcrumb-item active">صورتحساب</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="callout callout-info">
+                                <h5><i class="fa fa-info"></i> نکته :</h5>
+                                این صفحه مناسب برای پرینت طراحی شده است برای تست روی دکمه پرینت کلیک کنید
+                            </div>
+
+
+                            <!-- Main content -->
+                            <div class="invoice p-3 mb-3">
+                                <!-- title row -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4>
+                                            <i class="fa fa-globe"></i> KingCarpet
+                                            <small class="float-left">KingCarpet.com</small>
+                                        </h4>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- info row -->
+                                <div class="row invoice-info">
+                                    <div class="col-sm-4 invoice-col">
+                                        از
+                                        <address>
+                                            <strong>سایت کنیگ کارپت</strong><br>
+                                            نام فروشنده: <br>
+                                            <%- seller.fullName %> <br>
+                                            تلفن : <%- seller.phone %><br>
+                                           
+                                        </address>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-4 invoice-col">
+                                        به
+                                        <address>
+                                            <strong><%- order.fullName %></strong><br>
+                                            آدرس خریدار<br>
+                                            <%- order.address %><br>
+                                            تلفن : <%- order.phone %><br>
+                                            تعداد : <%- order.count %>
+                                        </address>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-4 invoice-col">
+                                        <b>توضیحات خریدار</b><br>
+                                        <br>
+                                        <p><%- order.body %></p>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+
+                                <!-- Table row -->
+                                <div class="row">
+                                    <div class="col-12 table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>تعداد</th>
+                                                    <th>عنوان محصول</th>
+                                                    <th>توضیحات</th>
+                                                    <th>قیمت هر یک (تومان)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><%- order.count %></td>
+                                                    <td><%- product.title %></td>
+                                                    <td>قرداد معامله از طریق سایت</td>
+                                                    <td><%- product.price %></td>
+                                                </tr>
+                                                <tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+
+                                <div class="row">
+                                    <!-- accepted payments column -->
+                                    <div class="col-6">
+                                        <p class="lead">روش های پرداخت :</p>
+
+                                        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                                            پرداخت از طریق کلیه کارت های بانکی عضو شتاب امکان پذیر می باشد.
+                                        </p>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-6">
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tr>
+                                                    <th style="width:50%">مبلغ کل :</th>
+                                                    <td><%- product.price * order.count %></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>مالیات (9.3%)</th>
+                                                    <td><%- parseInt(((product.price * order.count)/ 100 ) * 9.3) %></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>تخفیف :</th>
+                                                    <td>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>مبلغ قابل پرداخت:</th>
+                                                    <td><%- taxation %></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+
+                                <!-- this row will not appear when printing -->
+                                <div class="row no-print">
+                                    <div class="col-12">
+                                        <a href="invoice-print.html" target="_blank" class="btn btn-default"><i
+                                                class="fa fa-print"></i> پرینت </a>
+                                        <form action="/sellerPanel/removeOrder/<%- order.id %>" method="POST">
+                                            <!-- <button type="submit" class="btn btn-danger float-left"><i
+                                                    class="fa fa-credit-card"></i> لغو سفارش
+                                            </button> -->
+                                        </form>
+                                        <button type="button" onclick="goBack()" class="btn btn-warning float-left">بازگشت
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.invoice -->
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
+    <!-- jQuery -->
+    <script src="/sellerAdmin/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstra/sellerAdmin/p 4 -->
+    <script src="/sellerAdmin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClic/sellerAdmin/k -->
+    <script src="/sellerAdmin/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE/sellerAdmin/ App -->
+    <script src="/sellerAdmin/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE/sellerAdmin/ for demo purposes -->
+    <script src="/sellerAdmin/dist/js/demo.js"></script>
+</body>
+
+</html>

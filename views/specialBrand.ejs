@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>رویداد - مکس کوچ</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <!-- <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-awesome-pro.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-gilroy.css"> -->
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <!-- <link rel="stylesheet" href="assets/css/plugins/select2.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/photoswipe.css">
+    <link rel="stylesheet" href="assets/css/plugins/photoswipe-default-skin.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick.css"> -->
+
+    <!-- Main Style CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <link rel="stylesheet" href="/assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+
+</head>
+
+<body>
+
+    <div id="page">
+        <!-- Header Section Start -->
+        <%- include('./header' , {req , Sbrand , category , card}) %>
+
+        <!-- Header Section End -->
+        <div class="page-banner-slider section">
+            <div class="banner-slider swiper-container">
+
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <!--Banner Slider Item start-->
+                        <div class="banner-slider-item" data-bg-image="<%- set_baner(user) %>"> 
+                            <div class="container">
+                                <div class="row row-25 banner-content-area">
+                                    <div class="col-lg-4">
+                                        <div class="banner-slider-content-2 right">
+                                            <h1>تنوع  <br>قيمت مناسب<br>كيفيت </h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+
+                                        <!--Banner Slider Content start-->
+                                        <div class="banner-slider-content-2 left">
+                                            <h3>
+                                                <span class="number">*</span>
+                                                <span class="line"></span>
+                                                <%- user.brand %>
+                                            </h3>
+                                            <p><%- user.Slogan %></p>
+                                        </div>
+                                        <!--Banner Slider Content end-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Banner Slider Item end-->
+                    </div>
+
+                  
+
+                </div>
+<!-- 
+                <div class="banner-slider-prev swiper-button-prev banner-slider-nav"><i class="fal fa-angle-right"></i></div>
+                <div class="banner-slider-next swiper-button-next banner-slider-nav"><i class="fal fa-angle-right"></i></div> -->
+
+            </div>
+        </div>
+        <!-- Page Title Section Start -->
+        <div class="page-title-section section">
+            <div class="page-title">
+                <div class="container">
+                    <h1 class="title" style="margin-top: -0.25%;"><%- user.brand %></h1>
+                </div>
+            </div>
+            <div class="page-breadcrumb">
+                <div class="container">
+                    <ul class="breadcrumb">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page Title Section End -->
+
+        <!-- Event Section Start -->
+        <div class="section section-padding-bottom">
+            <div class="container">
+
+                <!-- Event Top Bar Start -->
+                <div class="row justify-content-between align-items-center max-mb-20">
+                    <div class="col-sm-auto col-12 max-mb-10">
+                        <!-- <p class="result-count">ما پیدا کردیم <span>14</span> رویداد برای شما</p> -->
+                    </div>
+                    <!-- <div class="col-sm-auto col-12 max-mb-10">
+                        <select class="sort-by">
+                            <option selected="selected">پشفرض</option>
+                            <option value="popularity">محبوبیت</option>
+                            <option value="date">اخیر</option>
+                            <option value="price">قیمت از پایین به بالا</option>
+                            <option value="price-desc">قیمت از بالا به پایین</option>
+                        </select>
+                    </div> -->
+                </div>
+                <!-- Event Top Bar End -->
+
+                <!-- Event Wrapper Start -->
+                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 max-mb-n30">
+                    <% if(product.docs.length == 0) { %>
+                        <h6>هیچ تابلو فرشی یافت نشد</h6>
+                        <% } %>
+                    <!-- Event Start -->
+                    <% product.docs.forEach(pro => { %>
+                    <div class="col max-mb-30" data-aos="fade-up">
+                        <div class="event">
+                            <div class="thumbnail">
+                                <a href="/product_details/<%- pro.slug %>" class="image"><img src="<%- pro.IMG1080 %>" alt="تصویر رویداد"></a>
+                                <div class="event-overlay-background"></div>
+                                <div class="event-overlay-content">
+                                    <a class="btn btn-md btn-light btn-hover-light theme-color" href="/product_details/<%- pro.slug %>">مشاهده محصول</a>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <span class="date"><%- price(pro.price) %> تومان</span>
+                                <h3 class="title"><a href="/product_details/<%- pro.slug %>"><%- pro.title %></a></h3>
+                                <ul class="event-location">
+                                    <li><%- pro.size %></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Event End -->
+                    <% }) %>
+
+                
+                  
+
+
+                </div>
+                <!-- Event Wrapper End -->
+
+                <!-- Pagination Start -->
+                <%- include(('./pagination') ,{ pagination : product}) %>
+
+                <!-- Pagination End -->
+
+            </div>
+        </div>
+        <!-- Event Section End -->
+
+        <%- include('./footer' ) %>
+
+
+        <!-- Scroll Top Start -->
+        <a href="#" class="scroll-top" id="scroll-top">
+            <i class="arrow-top fal fa-long-arrow-up"></i>
+            <i class="arrow-bottom fal fa-long-arrow-up"></i>
+        </a>
+        <!-- Scroll Top End -->
+    </div>
+
+    <%- include('./mobileHeader' , {req , card}) %>
+
+    <!-- JS
+============================================ -->
+
+    <!-- Vendors JS -->
+    <!-- <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+<script src="assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+<script src="assets/js/vendor/bootstrap.bundle.min.js"></script> -->
+
+    <!-- Plugins JS -->
+    <!-- <script src="assets/js/plugins/parallax.min.js"></script>
+<script src="assets/js/plugins/jquery.ajaxchimp.min.js"></script> -->
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <script src="/assets/js/vendor/vendor.min.js"></script>
+    <script src="/assets/js/plugins/plugins.min.js"></script>
+
+    <!-- Main Activation JS -->
+    <script src="/assets/js/main.js"></script>
+    <script src="/js/coustomquik.js"></script>
+
+
+
+
+
+</body>
+
+
+</html>

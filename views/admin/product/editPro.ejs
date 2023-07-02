@@ -1,0 +1,120 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrapfour.min.css" rel="stylesheet">
+    <link href="/css/bootstrapfour-rtl.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/component-chosen.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <% if( errors.length > 0)  { %>
+        <div class="row">
+            <% errors.forEach(error=>{ %>
+            <div class="col-md-12" style="color: red; font-size: x-large; float: right; margin-right: 10px;">
+                <%- error.msg %>
+            </div>
+            <%})%>
+        </div>
+        <br>
+        <% }%>
+
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <h2>ویرایش محصول</h2>
+        </div>
+        <form class="form-horizontal" method="POST" action="/admin/products/edit/<%- product.id %>?_method=put"
+            enctype="multipart/form-data">
+
+
+
+            <div class="form-group">
+                <label for="title" class="control-label">نام محصول </label>
+                <input id="title" type="text" class="form-control" name="title" value="<%- product.title %>">
+            </div>
+
+            <div class="form-group">
+                <label for="body" class="control-label">توضیحات تکمیلی </label>
+                <textarea name="body" id="body" class="form-control" rows="10"><%- product.body %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="exsist" class="control-label">تعدادموجود </label>
+                <input id="exsist" type="number" class="form-control" name="exsist" value="<%- product.exsist %>">
+            </div>
+
+            <div class="form-group">
+                <label for="size" class="control-label">اندازه</label>
+                <input id="size" type="text" class="form-control" name="size" value="<%- product.size %>">
+            </div>
+
+            <div class="form-group">
+                <label for="price" class="control-label">قيمت</label>
+                <input id="price" type="number" class="form-control" name="price" value="<%- product.price %>">
+            </div>
+
+            <div class="form-group">
+                <label for="abrishamUsed" class="control-label">میزان استفاده ابریشم</label>
+                <select name="abrishamUsed" id="abrishamUsed" class="form-control">
+                    <option value="TM" <%- product.abrishamUsed == 'TM' ? 'selected' : '' %>> خیلی زیاد </option>
+                    <option value="M" <%- product.abrishamUsed == 'M' ? 'selected' : '' %>> زیاد</option>
+                    <option value="N" <%- product.abrishamUsed == 'N' ? 'selected' : '' %>> متوسط</option>
+                    <option value="L" <%- product.abrishamUsed == 'L' ? 'selected' : '' %>> کم</option>
+                    <option value="NU" <%- product.abrishamUsed == 'NU' ? 'selected' : '' %>> استفاده نشده</option>
+                </select>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col">
+                    <label for="category" class="control-label font-weight-bold font-weight-bold">دسته بندی</label>
+                    <select name="category" id="category" class="form-control form-control-chosen input"
+                        data-placeholder="دسته بندی مورد نظر ..." multiple>
+                        <% category.forEach(cat => { %>
+                        <option value="<%= cat.id %>" <%= product.category.indexOf(cat.id) !== -1 ? 'selected' : ''%>>
+                            <%= cat.title %></option>
+
+                        <% }) %>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="seller" class="control-label">فروشنده</label>
+                <select name="seller" id="seller" class="form-control">
+                    <% seller.forEach(seller=>{ %>
+                    <option value="<%- seller.id %>" <%- product.seller == seller.id ? 'selected' : '' %>>
+                        <%- seller.fullName %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+
+            <div class="col">
+                <label for="images" class="control-label font-weight-bold">تصویر دوره</label>
+                <input type="file" class="form-control" name="images" id="images" placeholder="تصویر  را وارد کنید">
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">ثبت محصول</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
+    <script>
+        $('.form-control-chosen').chosen({});
+    </script>
+</body>
+
+</html>

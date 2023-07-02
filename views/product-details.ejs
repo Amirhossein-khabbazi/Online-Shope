@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>جزئیات محصول - مکس کوچ</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <!-- <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-awesome-pro.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-gilroy.css"> -->
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <!-- <link rel="stylesheet" href="assets/css/plugins/select2.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/photoswipe.css">
+    <link rel="stylesheet" href="assets/css/plugins/photoswipe-default-skin.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick.css"> -->
+
+    <!-- Main Style CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <link rel="stylesheet" href="/assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+
+</head>
+
+<body>
+
+    <div id="page">
+        <!-- Header Section Start -->
+        <%- include('./header' , {category : 'false' , req , Sbrand :''  , card }) %>
+
+        <!-- Header Section End -->
+
+        <!-- Page Title Section Start -->
+        <div class="page-title-section section">
+            <div class="page-title">
+                <div class="container">
+                    <h1 class="title">جزئیات محصول</h1>
+                </div>
+            </div>
+            <div class="page-breadcrumb">
+                <div class="container">
+                    <ul class="breadcrumb">
+                        <li><a href="index.html">صفحه اصلی</a></li>
+                        <li class="current">جزئیات محصول</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Page Title Section End -->
+
+        <!-- Product Details Section Start -->
+        <div class="section section-padding-bottom-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="single-product-image">
+                            <img src="<%- pro.IMG1080 %>" alt="book">
+                            <!-- <div class="product-badges">
+                                <span class="onsale">-29%</span>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="single-product-content">
+                            <h3 class="title">
+                                <%- pro.title %>
+                            </h3>
+                            <h6>
+                                <%- pro.seller.brand %>
+                            </h6>
+                            <span class="prices">
+                                <span class="price-new">
+                                    <%- price(pro.price) %> تومان
+                                </span>
+                                <!-- <span class="price-old">69000 تومان</span> -->
+                            </span>
+                            <div class="product-ratings">
+                                <span class="star-rating">
+                                    <span class="rating-active">امتیاز</span>
+                                </span>
+                                <a href="#reviews" class="review-link">(<span class="count">
+                                        <%- comment.length %>
+                                    </span> نظرات مشتری)</a>
+                            </div>
+                            <div class="product-description">
+                                <p>
+                                    <%- pro.body %>
+                                </p>
+                                <!-- <p>استراتژی های روشن و مختصر بهینه سازی موتور جستجو (SEO) را برای افزایش رتبه جستجوی وب سایت خود در Google ، Bing و Yahoo در سال 2020 ، بدون در نظر گرفتن تجربه قبلی خود ، بیاموزید. آیا تا به حال به این موضوع فکر کرده اید که چرا تجارت آنلاین شما در رتبه اول Google یا حتی در صفحه اول نتایج قرار ندارد؟ اکنون زمان آن است که دریابید چرا SEO یکی از بزرگترین متحدان شما در ایجاد ترافیک و تبدیل اضافی در سال 2020 است.</p> -->
+                            </div>
+                            <div class="quantity-button-wrapper">
+                                <div class="quantity">
+                                    <label>تعداد </label>
+                                    <input id="number" type="number" value="1" min="1">
+                                    <input type="hidden" id="exsist" value="<%- pro.exsist %>">
+                                    <p id="numberError" style="color: red; display: none;">تعداد سفارش بیشتر از
+                                        تعداد موجود در انبار میباشد</p>
+                                    <p id="numberErrorZero" style="color: red; display: none;">تعداد سفارش
+                                        نمیتواند صفر و کمتر باشد!</p>
+                                    <input type="hidden" id="exsist" value="<%- pro.exsist %>">
+                                    <br /><br />
+                                </div>
+                                <p class="stock in-stock">
+                                    <%- pro.exsist %> در انبار
+                                </p>
+                            </div>
+                            <div class="product-action">
+                                <% if(pro.exsist !=0) { %>
+                                    <% if(is_auth=='true' ) { %>
+
+                                        <% if(isInCard) { %>
+
+                                            <button class=" btn btn-primary btn-hover-secondary"
+                                                data-dismiss="modal">این محصول در سبد خرید شما موجود میباشد</button>
+
+                                            <% } else { %>
+
+                                                <button onclick="addToCard('<%- pro.id %>' , '<%- pro.exsist %> ')"
+                                                    class=" btn btn-primary btn-hover-secondary"
+                                                    data-dismiss="modal">افزودن به سبد</button>
+
+                                                <% } %>
+
+                                                    <% } else { %>
+                                                        <a href="/buyer/buyerLogin"><button aria-disabled="true"
+                                                                class="btn btn-primary btn-hover-secondary">ابتدا باید
+                                                                وارد شوید</button></a>
+                                                        <% } %>
+                                                            <% } else { %>
+                                                                <button aria-disabled="true"
+                                                                    class="btn btn-primary btn-hover-secondary">این
+                                                                    محصول در حال حاظر موجود نیست</button>
+                                                                <% } %>
+                                                                    <button class="btn btn-wishlist btn-box"
+                                                                        id="likeimg"><i
+                                                                            class="fal fa-heart"></i></button>
+                                                                    <!-- <button class="btn btn-compare btn-box"><i class="fal fa-random"></i></button> -->
+                            </div>
+                            <div class="product-meta">
+                                <div class="meta-item">
+                                    <h6>اندازه:</h6>
+                                    <div class="meta-content">
+                                        <span class="sku">
+                                            <%- pro.size %>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="meta-item">
+                                    <h6> تعداد موجود:</h6>
+                                    <% if(pro.exsist !=0) { %>
+                                        <div class="meta-content">
+                                            <a href="#" rel="tag">
+                                                <%- pro.exsist %>
+                                            </a>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="meta-content">
+                                                <a href="#" style="color:red" rel="tag">موجود نمی باشد</a>
+                                            </div>
+                                            <% } %>
+                                </div>
+                                <div class="meta-item">
+                                    <h6>میزان استفاده از ابریشم:</h6>
+                                    <% if(pro.abrishamUsed=='TM' ){ %> <a href="#" rel="tag">خیلی زیاد </a>
+                                        <% } %>
+                                            <% if(pro.abrishamUsed=='M' ) { %> <a href="#" rel="tag">زیاد </a>
+                                                <% } %>
+                                                    <% if(pro.abrishamUsed=='N' ) { %> <a href="#" rel="tag">متوسط </a>
+                                                        <% } %>
+                                                            <% if(pro.abrishamUsed=='L' ) { %> <a href="#" rel="tag">
+                                                                    کم</a>
+                                                                <% } %>
+                                                                    <% if(pro.abrishamUsed=='NU' ) { %> <a href="#"
+                                                                            rel="tag"> استفاده نشده</a>
+                                                                        <% } %>
+                                                                            %>
+                                                                            <div class="meta-content"></div>
+
+                                </div>
+                            </div>
+
+                            <!-- <div class="entry-product-share">
+                                <h6>اشتراک:</h6>
+                                <div class="author-social-networks">
+                                    <div class="inner">
+
+                                        <a class="hint--bounce hint--top hint--primary" aria-label="فیس بوک" href="#"
+                                            target="_blank">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+
+                                        <a class="hint--bounce hint--top hint--primary" aria-label="توییتر" href="#"
+                                            target="_blank">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+
+                                        <a class="hint--bounce hint--top hint--primary" aria-label="لینکدین" href="#"
+                                            target="_blank">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+
+                                        <a class="hint--bounce hint--top hint--primary" aria-label="تامبلر" href="#"
+                                            target="_blank">
+                                            <i class="fab fa-tumblr-square"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product Details Section End -->
+
+        <!-- Single Products Information Section Start -->
+        <div class="single-product-information section section-padding-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="nav product-info-tab-list justify-content-center">
+                            <li><a class="active" data-toggle="tab" href="#tab-description">اطلاعات فروشنده</a></li>
+                            <li><a data-toggle="tab" href="#tab-reviews">نظرات (<%- comment.length %>)</a></li>
+                        </ul>
+                        <div class="tab-content product-infor-tab-content">
+                            <div class="tab-pane fade show active" id="tab-description">
+                                <div class="row">
+                                    <div class="offset-lg-2 col-lg-8">
+                                        <div class="description-list">
+                                            <ul>
+
+                                                <li><%- pro.seller.fullName %>
+                                                </li>
+                                                <li><%- pro.seller.brand %>
+                                                </li>
+                                                <li><%- pro.seller.phone %>
+                                                </li>
+                                                <li><%- pro.seller.address %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-reviews">
+
+                                <div class="row">
+
+                                    <div class="col-lg-8 offset-lg-2">
+                                        <div class="comment-form-wrap review-form-wrap">
+                                            <div class="comment-respond">
+                                                <h3 class="title">افزودن نظر</h3>
+                                                <p class="comment-notes max-mb-20"><span id="email-notes">آدرس ایمیل شما
+                                                        منتشر نخواهد شد.</span> قسمتهای مورد نیاز علامت گذاری شده اند
+                                                    <span class="required">*</span>
+                                                </p>
+
+
+                                                <div class="comment-form-rating max-mb-30">
+                                                    <!-- <label>امتیاز شما:</label> -->
+                                                    <!-- <span class="rating"><span class="star"></span></span> -->
+                                                </div>
+
+                                                <form action="#" method="post">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12 max-mb-30">
+                                                            <input type="text" id="nameComment"
+                                                                value="<%- userInfo.fullName %>" placeholder="نام شما *"
+                                                                name="Cname">
+                                                            <p id="nameCommentError" style="color: red; display: none;">
+                                                                نام نمیتواند خالی باماند</p>
+
+                                                        </div>
+                                                        <div class="col-md-6 col-12 max-mb-30">
+                                                            <input type="number" id="phoneComment"
+                                                                placeholder="شماره موبایل *"
+                                                                value="<%- userInfo.phone %>" name="Cphone">
+                                                            <p id="phoneCommentError"
+                                                                style="color: red; display: none;"> لطفا شماره موبایل
+                                                                خود را درست وارد کنید</p>
+
+                                                        </div>
+                                                        <div class="col-12 max-mb-30">
+                                                            <textarea name="Cbody" id="bodyComment"
+                                                                placeholder="نظر شما"></textarea>
+                                                            <p id="bodyCommentError" style="color: red; display: none;">
+                                                                نظر شما باید بیش از2 کاراکتر باشد</p>
+
+                                                        </div>
+                                                        <input type="hidden" id="product" value="<%- pro.id %>">
+
+                                                        <div class="col-12">
+                                                            <p
+                                                                class="comment-form-cookies-consent justify-content-start text-left">
+                                                                <!-- <input id="comment-cookies-consent" name="comment-cookies-consent" type="checkbox" value="yes"> -->
+                                                                <!-- <label for="comment-cookies-consent">نام ، ایمیل و وب سایت من را برای دفعه بعدی که نظر می دهم در این مرورگر ذخیره کنید.</label> -->
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-12 text-center">
+                                                            <button type="button" id="commentSubmitButton"
+                                                                class="btn btn-primary btn-hover-secondary btn-width-180 btn-height-60">ارسال
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="comment-list-wrapper review-list-wrapper">
+
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <ol class="comment-list">
+                                                        <% comment.forEach(com=>{ %>
+                                                            <% if(com.father) { %>
+                                                                <li class="comment border-bottom">
+                                                                    <div class="comment-2">
+                                                                        <div class="comment-author vcard">
+                                                                            <img style="width:80px; height: 80px" alt=""
+                                                                                src="/assets/images/user.png">
+                                                                        </div>
+                                                                        <div class="comment-content">
+                                                                            <div class="meta">
+                                                                                <h6 class="fn">
+                                                                                    <%- com.fullName %>
+                                                                                </h6>
+                                                                                <span class="star-rating">
+                                                                                    <!-- <span class="rating-active">امتیاز</span> -->
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="comment-text">
+                                                                                <p>
+                                                                                    <%- com.body %>
+                                                                                </p>
+                                                                                <!-- <p>از اینکه همیشه الگوی HTML خود را به روز نگه دارید متشکریم. سطح حمایت و فداکاری شما هیچکدام از آنها نیست.</p> -->
+                                                                            </div>
+
+                                                                            <div class="comment-actions">
+                                                                                <div class="comment-datetime">
+                                                                                    <%- date(com.createdAt).format('jYYYY/jMM/jDD   |  HH:mm:ss') %>
+                                                                                </div><span> </span>
+                                                                                <!-- <a class="comment-reply-link" href="#">پاسخ</a> -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <% if(com.child) { %>
+                                                                        <div
+                                                                            style="margin-right: 15%; margin-bottom: 50px; margin-top: 20px;">
+                                                                            <div class="comment-2">
+                                                                                <div class="comment-author vcard">
+                                                                                    <img style="width:80px; height: 80px" alt=""
+                                                                                        src="<%- pro.seller.logo %>">
+                                                                                </div>
+                                                                                <div class="comment-content">
+                                                                                    <div class="meta">
+                                                                                        <h6 class="fn">
+                                                                                            <%- com.child.fullName %>
+                                                                                        </h6>
+                                                                                        <span class="star-rating">
+                                                                                            <!-- <span class="rating-active">امتیاز</span> -->
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="comment-text">
+                                                                                        <p>
+                                                                                            <%- com.child.body %>
+                                                                                        </p>
+                                                                                        <!-- <p>از اینکه همیشه الگوی HTML خود را به روز نگه دارید متشکریم. سطح حمایت و فداکاری شما هیچکدام از آنها نیست.</p> -->
+                                                                                    </div>
+
+                                                                                    <div class="comment-actions">
+                                                                                        <div class="comment-datetime">
+                                                                                            <%- date(com.child.createdAt).format('jYYYY/jMM/jDD   |  HH:mm:ss') %> 
+                                                                                        </div><span> </span>
+                                                                                        <!-- <a class="comment-reply-link" href="#">پاسخ</a> -->
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                </li>
+                                                                <% } %>
+                                                                    <% } %>
+                                                                        <% }) %>
+
+
+                                                    </ol>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Single Products Information Section End -->
+
+        <%- include('./footer' ) %>
+
+
+        <!-- Scroll Top Start -->
+        <a href="#" class="scroll-top" id="scroll-top">
+            <i class="arrow-top fal fa-long-arrow-up"></i>
+            <i class="arrow-bottom fal fa-long-arrow-up"></i>
+        </a>
+        <!-- Scroll Top End -->
+    </div>
+
+    <%- include('./mobileHeader' , {req , card}) %>
+
+
+    <!-- JS
+============================================ -->
+
+    <!-- Vendors JS -->
+    <!-- <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+<script src="assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+<script src="assets/js/vendor/bootstrap.bundle.min.js"></script> -->
+
+    <!-- Plugins JS -->
+    <!-- <script src="assets/js/plugins/parallax.min.js"></script>
+<script src="assets/js/plugins/jquery.ajaxchimp.min.js"></script> -->
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <script src="/assets/js/vendor/vendor.min.js"></script>
+    <script src="/assets/js/plugins/plugins.min.js"></script>
+
+    <!-- Main Activation JS -->
+    <script src="/assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/js/coustomquik.js"></script>
+    <script src="/js/commetsValidation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- <script src="/js/coustom.js"></script> -->
+
+
+    <script>
+        let like = 0
+        let likenum;
+        $("#likeimg").click(async function () {
+            if (like == 0) {
+                    
+                like = 1
+                $("#likeimg").css("border-color", "#20ad96");
+                $("#likeimg").css("background-color", "#20ad96");
+                $("#likeimg").css("color", "#fff");
+                let likenum = <%- pro.like %>
+                    $('#likeNum').text(likenum + 1)
+                let response = await fetch('/product_details/like/<%- pro.slug %>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ product_slug: '<%- pro.slug %>' }),
+                })
+            }
+            if (like == 1) {
+                like = 0
+                $("#likeimg").css("border-color", "#fff");
+                $("#likeimg").css("background", "#f8f8f8");
+                $("#likeimg").css("color", "#333");
+                let likenum = <%- pro.like %>
+                    $('#likeNum').text(likenum)
+                let response = await fetch('/product_details/disLike/<%- pro.slug %>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ product_slug: '<%- pro.slug %>' }),
+                })
+            }
+
+
+        })
+        
+
+    </script>
+
+
+</body>
+
+
+</html>

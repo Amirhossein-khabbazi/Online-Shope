@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrapfour.min.css" rel="stylesheet">
+    <link href="/css/bootstrapfour-rtl.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="container">
+        
+        <% if( errors.length > 0)  { %>
+            <div class="row">
+                <% errors.forEach(error=>{ %>
+                <div class="col-md-12" style="color: red; font-size: x-large; float: right; margin-right: 10px;">
+                    <%- error.msg %>
+                </div>
+                <%})%>
+            </div>
+            <br>
+            <% }%>
+
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <h2>ایجاد کاربر</h2>
+        </div>
+        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/admin/users/create" >
+
+
+
+            <div class="form-group">
+                <label for="name" class="control-label">نام </label>
+                <input id="name" type="text" class="form-control" name="name" value="" >
+            </div>
+
+            <div class="form-group">
+                <label for="family" class="control-label">نام خانوادگي </label>
+                <input id="family" type="text" class="form-control" name="family" value="" >
+            </div>
+
+            <div class="form-group">
+                <label for="userName" class="control-label">نام كاربری</label>
+                <input id="userName" type="text" class="form-control" name="userName" value="" >
+            </div>
+
+            <div class="form-group">
+                <label for="brand" class="control-label">برند</label>
+                <input id="brand" type="text" class="form-control" name="brand" value="" >
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="control-label">شماره موبایل</label>
+                <input id="phone" type="number" class="form-control" name="phone" value="" >
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="control-label">پسورد</label>
+                <input id="password" type="password" class="form-control" name="password" value="" >
+            </div>
+
+            <div class="form-group">
+                <label for="Slogan" class="control-label">شعار</label>
+                <input id="Slogan" type="Slogan" class="form-control" name="Slogan" value="" >
+            </div>
+
+            <div class="form-group">
+                <label for="bankNum" class="control-label">شماره حساب</label>
+                <input id="bankNum" type="bankNum" class="form-control" name="bankNum" value="" >
+            </div>
+            
+            <div class="form-group">
+                <label for="address" class="control-label">ادرس مغازه / کارگاه / دفتر</label>
+                <input id="address" type="address" class="form-control" name="address" value="" >
+            </div>
+
+            <div class="col">
+                <label for="logo" class="control-label font-weight-bold">تصویر لوگو</label>
+                <input type="file" class="form-control" name="logo" id="logo" multiple>
+            </div>
+
+            
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">ثبت کاربر</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

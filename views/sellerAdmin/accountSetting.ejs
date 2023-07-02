@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>پنل مدیریت | تنظیمات حساب کاربری</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="/sellerAdmin/plugins/daterangepicker/daterangepicker-bs3.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="/sellerAdmin/plugins/iCheck/all.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="/sellerAdmin/plugins/colorpicker/bootstrap-colorpicker.min.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="/sellerAdmin/plugins/timepicker/bootstrap-timepicker.min.css">
+    <!-- Persian Data Picker -->
+    <link rel="stylesheet" href="/sellerAdmin/dist/css/persian-datepicker.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/sellerAdmin/plugins/select2/select2.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/sellerAdmin/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <!-- bootstrap rtl -->
+    <link rel="stylesheet" href="/sellerAdmin/dist/css/bootstrap-rtl.min.css">
+    <!-- template rtl version -->
+    <link rel="stylesheet" href="/sellerAdmin/dist/css/custom-style.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <%- include('./message' , {message}) %>
+
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="/sellerAdmin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">پنل مدیریت</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div>
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <!-- <div class="image">
+                            <img src="https://www.gravatar.com/avatar/52f0fbcbedee04a121cba8dad1174462?s=200&d=mm&r=g"
+                                class="img-circle elevation-2" alt="User Image">
+                        </div> -->
+                        <div class="info">
+                            <a href="#" class="d-block"><%- user.fullName %></a>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-dashboard"></i>
+                                    <p>
+                                        داشبوردها
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/sellerPanel" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>مدیریت کل</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/sellerPanel/dashbordTwo" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>مدیریا محصولات</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/sellerPanel/dashbordThree" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>مدیریت سفارشات</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a href="../widgets.html" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ویجت‌ها
+                                        <span class="right badge badge-danger">جدید</span>
+                                    </p>
+                                </a>
+                            </li> -->
+                            <!-- <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-pie-chart"></i>
+                                    <p>
+                                        چارت‌ها
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="../charts/chartjs.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>نمودار ChartJS</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../charts/flot.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>نمودار Flot</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../charts/inline.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>نمودار Inline</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> -->
+                            <!-- <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-tree"></i>
+                                    <p>
+                                        اشیای گرافیکی
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="../UI/general.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>عمومی</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../UI/icons.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>آیکون‌ها</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../UI/buttons.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>دکمه‌ها</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../UI/sliders.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>اسلایدر‌ها</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> -->
+                            <li class="nav-item">
+                                <a href="/sellerPanel/addProduct" class="nav-link ">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>ایجاد محصول جدید</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/sellerPanel/contact-us" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>ارتباط با ما</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>تنظیمات حساب کاربری</p>
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item has-treeview menu-open">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fa fa-edit"></i>
+                                    <p>
+                                        فرم‌ها
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="../forms/general.html" class="nav-link active">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>اجزا عمومی</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../forms/advanced.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>پیشرفته</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../forms/editors.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>ویشرایشگر</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> -->
+                            <!-- <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-table"></i>
+                                    <p>
+                                        جداول
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="../tables/simple.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>جداول ساده</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../tables/data.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>جداول داده</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> -->
+                            <!-- <li class="nav-header">مثال‌ها</li>
+                            <li class="nav-item">
+                                <a href="../calendar.html" class="nav-link">
+                                    <i class="nav-icon fa fa-calendar"></i>
+                                    <p>
+                                        تقویم
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li> -->
+                            <!-- <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-envelope-o"></i>
+                                    <p>
+                                        ایمیل‌ باکس
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="../mailbox/mailbox.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>اینباکس</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../mailbox/compose.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>ایجاد</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../mailbox/read-mail.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>خواندن</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> -->
+                            <!-- <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-book"></i>
+                                    <p>
+                                        صفحات
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="../examples/invoice.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>سفارشات</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../examples/profile.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>پروفایل</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../examples/login.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>صفحه ورود</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../examples/register.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>صفحه عضویت</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../examples/lockscreen.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>قفل صفحه</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-plus-square-o"></i>
+                                    <p>
+                                        بیشتر
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="../examples/404.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>ارور 404</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../examples/500.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>ارور 500</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../examples/blank.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>صفحه خالی</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="starter.html" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>صفحه شروع</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-header">متفاوت</li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-file"></i>
+                                    <p>مستندات</p>
+                                </a>
+                            </li>
+                            <li class="nav-header">برچسب‌ها</li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-circle-o text-danger"></i>
+                                    <p class="text">مهم</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-circle-o text-warning"></i>
+                                    <p>هشدار</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-circle-o text-info"></i>
+                                    <p>اطلاعات</p>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <% if( errors.length> 0) { %>
+                <% errorCounter=1 %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-default">
+
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">&times;</button>
+                                        <h5><i class="icon fa fa-ban"></i> خطا!</h5>
+
+                                        <div class="row">
+                                            <% errors.forEach(error=>{ %>
+                                                <%- errorCounter %>
+                                                    )
+                                                    <%- error %>
+                                                        <br>
+                                                        <% errorCounter+=1 %>
+                                                            <%})%>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+
+
+                        <!-- /.col -->
+                    </div>
+                    <!-- errors -->
+                    <% }%>
+                        <!-- Content Header (Page header) -->
+                        <section class="content-header">
+                            <div class="container-fluid">
+                                <div class="row mb-2">
+                                    <div class="col-sm-6">
+                                        <h1>ویرایش اطلاعت</h1>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ol class="breadcrumb float-sm-left">
+                                            <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                            <li class="breadcrumb-item active">ارتباط با ما</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div><!-- /.container-fluid -->
+                        </section>
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="container-fluid">
+
+                                <!-- SELECT2 EXAMPLE -->
+                                <div class="card card-default">
+                                    <div class="card-header">
+
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-widget="collapse"><i
+                                                    class="fa fa-minus"></i></button>
+                                            <!-- <button type="button" class="btn btn-tool" data-widget="remove"><i
+                                        class="fa fa-remove"></i></button> -->
+                                        </div>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <form action="/sellerPanel/acountSetting" method="POST">
+                                            <div class="row">
+
+                                                <div class="col-md-6" id="inputName">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="inputEmail3" class="col-sm-2 control-label">نام
+                                                                </label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" name="name"
+                                                                    value="<%- user.name %>" 
+                                                                    id="name"
+                                                                    placeholder="  نام خانوادگی را وارد کنید">
+                                                                    <p style="color: red; display: none;" id="nameError">نام نمیتواند خالی بماند</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="inputEmail3" class="col-sm-2 control-label">نام
+                                                                 
+                                                                خانوادگی</label>
+
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" name="family"
+                                                                    value="<%- user.family %>" 
+                                                                    id="family"
+                                                                    placeholder="  نام خانوادگی را وارد کنید">
+                                                                    <p style="color: red; display: none;" id="familyError">نام خانوادگی نمیتواند خالی بماند</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6" id="inputPhone">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <div class="form-group">
+                                                                <label for="inputEmail3"
+                                                                    class="col-sm-2 control-label">شماره
+                                                                    موبایل</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="number" name="phone"
+                                                                        value="<%- user.phone %>" 
+                                                                        class="form-control" id="phone"
+                                                                        placeholder="شماره موبایل را وارد کنید">
+                                                                        <p style="color: red; display: none;" id="phoneError">شماره موبایل را به درستی وارد کنید</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <div class="form-group">
+                                                                <label for="inputEmail3"
+                                                                    class="col-sm-2 control-label">
+                                                                    برند</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="brand"
+                                                                        value="<%- user.brand %>" 
+                                                                        class="form-control" id="brand"
+                                                                        placeholder="برند را وارد کنید">
+                                                                        <p style="color: red; display: none;" id="brandError">برند نمیتواند خالی بماند</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.form-group -->
+
+                                                    <!-- /.form-group -->
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <br><br>
+                                                        <label style="font-size: larger; font-weight: bold;">تغیر رمز ورود</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <div class="form-group">
+                                                                <label for="inputEmail3"
+                                                                    class="col-sm-2 control-label">
+                                                                    رمز ورود فعلی</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="password" name="peresentPassword"
+                                                                        value="" 
+                                                                        class="form-control" id="peresentPassword"
+                                                                        placeholder="رمز ورود فعلی را وارد کنید">
+                                                                        <p style="color: red; display: none;" id="peresentPasswordError">رمز فعلی نمیتواند خالی بماند</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <div class="form-group">
+                                                                <label for="inputEmail3"
+                                                                    class="col-sm-2 control-label">
+                                                                   رمز عبور جدید</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="password" name="newPassword"
+                                                                        value="" 
+                                                                        class="form-control" id="newPassword"
+                                                                        placeholder="رمز ورود جدید را وارد کنید">
+                                                                        <p style="color: red; display: none;" id="newPasswordError">رمز جدید را وارد کنید</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <div class="form-group">
+                                                                <label for="inputEmail3"
+                                                                    class="col-sm-2 control-label">
+                                                                   تکرار رمز عبور جدید</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="password" name="repeadNewPassword"
+                                                                        value="" 
+                                                                        class="form-control" id="repeadNewPassword"
+                                                                        placeholder="تکرار رمز عبور جدید را وارد کنید">
+                                                                        <p style="color: red; display: none;" id="repeadNewPasswordError">لطفا رمز جدید خود را دوباره وارد کنید</p>
+                                                                        <p style="color: red; display: none;" id="matchError">رمز عبور شما یکسان نمیباشد</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <!-- /.col -->
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <br><br>
+                                                        <label style="font-size: larger; font-weight: bold;">تغیر نام کاربری</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <div class="form-group">
+                                                                <label for="inputEmail3"
+                                                                    class="col-sm-2 control-label">
+                                                                   نام کاربری</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="userName"
+                                                                        value="<%- user.userName %>" 
+                                                                        class="form-control" id="userName"
+                                                                        placeholder="نام کاربری را وارد کنید">
+                                                                        
+                                                                        <p style="color: red; display: none;" id="userNameError">همچین نام کاربری وجود دارد. لطفا نام کاربری دیگری را انتخاب کنید.</p>
+                                                                        <p style="color: green; display: none;" id="userNameExist">این نام کاربری در دسترس میباشد</p>
+                                                                        <p style="color: red; display: none;" id="userNameEmpty">نام کاربری نمیتواند کمتر از سه کاراکتر باشد یا خالی بماند. لطف یک نام کاربری انتخاب کنید</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.col -->
+                                            </div>
+                                          
+                                            <br />
+                                            <!-- /.row -->
+                                            <button class="btn btn-success">ذخیره تنظیمات</button>
+                                        </form>
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                </div>
+                            </div><!-- /.container-fluid -->
+                        </section>
+                        <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="/sellerAdmin/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstra/sellerAdmin/p 4 -->
+    <script src="/sellerAdmin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 /sellerAdmin/-->
+    <script src="/sellerAdmin/plugins/select2/select2.full.min.js"></script>
+    <!-- InputMas/sellerAdmin/k -->
+    <script src="/sellerAdmin/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="/sellerAdmin/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="/sellerAdmin/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <!-- date-ran/sellerAdmin/ge-picker -->
+    <script src="/sellerAdmin/https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="/sellerAdmin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstra/sellerAdmin/p color picker -->
+    <script src="/sellerAdmin/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <!-- SlimScro/sellerAdmin/ll 1.3.0 -->
+    <script src="/sellerAdmin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- iCheck 1/sellerAdmin/.0.1 -->
+    <script src="/sellerAdmin/plugins/iCheck/icheck.min.js"></script>
+    <!-- FastClic/sellerAdmin/k -->
+    <script src="/sellerAdmin/plugins/fastclick/fastclick.js"></script>
+    <!-- Persian /sellerAdmin/Data Picker -->
+    <script src="/sellerAdmin/dist/js/persian-date.min.js"></script>
+    <script src="/sellerAdmin/dist/js/persian-datepicker.min.js"></script>
+    <!-- AdminLTE/sellerAdmin/ App -->
+    <script src="/sellerAdmin/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE/sellerAdmin/ for demo purposes -->
+    <script src="/sellerAdmin/dist/js/demo.js"></script>
+    <!-- Page script -->
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            //Datemask2 mm/dd/yyyy
+            $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+            //Money Euro
+            $('[data-mask]').inputmask()
+
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            })
+            //Red color scheme for iCheck
+            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red'
+            })
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            })
+
+            //Colorpicker
+            $('.my-colorpicker1').colorpicker()
+            //color picker with addon
+            $('.my-colorpicker2').colorpicker()
+
+
+            $('.normal-example').persianDatepicker();
+
+
+
+
+        })
+    </script>
+    <!-- <script src="/sellerAdmin/dist/js/costum.js"></script> -->
+    <script src="/sellerAdmin/dist/js/accountSetting.js"></script>
+
+</body>
+
+</html>

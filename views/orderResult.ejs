@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>سبد خرید خالی است - مکس کوچ</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
+
+    <script>
+        window.onbeforeunload = function () {
+            window.setTimeout(function () {
+                window.location = '/buyer/card';
+            }, 0);
+            window.onbeforeunload = null; // necessary to prevent infinite loop, that kills your browser 
+        }
+    </script>
+    <!-- CSS
+	============================================ -->
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <!-- <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-awesome-pro.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-gilroy.css"> -->
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <!-- <link rel="stylesheet" href="assets/css/plugins/select2.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/photoswipe.css">
+    <link rel="stylesheet" href="assets/css/plugins/photoswipe-default-skin.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick.css"> -->
+
+    <!-- Main Style CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <link rel="stylesheet" href="/assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+
+</head>
+
+<body>
+
+    <div id="page">
+        <!-- Header Section Start -->
+        <%- include('./header' , {req , Sbrand : '' , category : '' , card}) %>
+
+            <!-- Header Section End -->
+
+            <!-- Page Title Section Start -->
+            <div class="page-title-section section">
+                <div class="page-title">
+                    <div class="container">
+                        <% if(status) { %>
+                            <h1 class="title">سفارش شما با موفقیت ثبت شد</h1>
+                            <% } else { %>
+                                <h1 class="title">سفارش شما موفقیت آمیز نبود!!!</h1>
+                                <% } %>
+                    </div>
+                </div>
+                <div class="page-breadcrumb">
+                    <div class="container">
+                        <ul class="breadcrumb">
+                            <li><a href="/">صفحه اصلی</a></li>
+                            <li class="current">نتیجه سفارش</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Title Section End -->
+
+            <!-- Shop Product Section Start -->
+            <div class="section section-padding-bottom">
+                <div class="container">
+                    <div class="cart-empty-content">
+                        <div class="cart-section section section-padding-bottom">
+                            <div class="container faq-wrapper">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <!-- Cart Table -->
+                                        <div class="cart-table table-responsive max-mb-30">
+                                            <h5>کاربر گرامی لطفا کد (های) پیگیری سفارشات خود را به خاطر داشته باشید تا
+                                                در صورت مشکل به راحتی از طریق پشتیبانی حل کنید. </h5>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="pro-title">محصول</th>
+                                                        <th class="pro-price">قیمت</th>
+                                                        <th class="pro-quantity">تعداد سفارش</th>
+                                                        <th class="pro-quantity">کد پیگیری سفارش</th>
+                                                        <th class="pro-remove">نتیجه </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% history.forEach(order=> { %>
+                                                        <tr>
+
+                                                            <td class="pro-title"><a href="#"
+                                                                    id="title-<%- order.product.id %>">
+                                                                    <%-order.title %>
+                                                                </a></td>
+                                                            <td class="pro-price"><span
+                                                                    id="price-<%- order.product.id %>">
+                                                                    <%- order.price %>
+                                                                </span></td>
+                                                            <td class="pro-price"><span
+                                                                    id="price-<%- order.product.id %>">
+                                                                    <%- order.count %>
+                                                                </span></td>
+                                                            <td class="pro-subtotal"><span
+                                                                    id="follow-<%- order.product.id %>">
+                                                                    <%- order.code %>
+                                                                </span></td>
+                                                            <% if(status) { %>
+                                                                <td class="pro-remove"><a style="color:green"
+                                                                        href="#">موفقیت آمیز</a></td>
+                                                                <% } else { %>
+                                                                    <td class="pro-remove"><a style="color:red"
+                                                                            href="#">نا موفق</a></td>
+                                                                    <% } %>
+
+
+                                                        </tr>
+                                                        <% }) %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="row max-mb-n30">
+
+                                            <div class="col-lg-6 col-12 max-mb-30">
+                                                <!-- محاسبه حمل و نقل -->
+
+                                                <!-- Discount Coupon -->
+                                                <!-- <div class="discount-coupon">
+                                                <h4>کد کوپن تخفیف</h4>
+                                                <form action="#">
+                                                    <div class="row max-mb-n30">
+                                                        <div class="col-md-6 col-12 max-mb-30">
+                                                            <input type="text" placeholder="کد تخفیف">
+                                                        </div>
+                                                        <div class="col-md-6 col-12 max-mb-30">
+                                                            <button class="btn btn-primary btn-hover-secondary">اعمال کد</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div> -->
+                                            </div>
+
+                                            <!-- Cart Summary -->
+                                            <div class="col-lg-6 col-12 max-mb-30 d-flex">
+                                                <div class="cart-summary">
+                                                    <div class="cart-summary-wrap">
+                                                        <h4>خلاصه سفارش</h4>
+                                                        <p>جمع کل <span>
+                                                                <%- cardPrice %> تومان
+                                                            </span></p>
+                                                        <p>با احتساب مالیات 9.3%</p>
+                                                        <p>هزینه حمل و نقل <span>رایگان</span></p>
+                                                        <h2>گراند توتال <span>
+                                                                <%- cardPrice %>
+                                                            </span></h2>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/buyer" class="btn btn-primary btn-hover-secondary">برگشت به پنل کاربری</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Shop Product Section End -->
+
+            <%- include('./footer' ) %>
+
+
+                <!-- Scroll Top Start -->
+                <a href="#" class="scroll-top" id="scroll-top">
+                    <i class="arrow-top fal fa-long-arrow-up"></i>
+                    <i class="arrow-bottom fal fa-long-arrow-up"></i>
+                </a>
+                <!-- Scroll Top End -->
+    </div>
+
+    <%- include('./mobileHeader' , {req , card}) %>
+
+
+        <!-- JS
+============================================ -->
+
+        <!-- Vendors JS -->
+        <!-- <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+<script src="assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+<script src="assets/js/vendor/bootstrap.bundle.min.js"></script> -->
+
+        <!-- Plugins JS -->
+        <!-- <script src="assets/js/plugins/parallax.min.js"></script>
+<script src="assets/js/plugins/jquery.ajaxchimp.min.js"></script> -->
+
+        <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+        <script src="/assets/js/vendor/vendor.min.js"></script>
+        <script src="/assets/js/plugins/plugins.min.js"></script>
+
+        <!-- Main Activation JS -->
+        <script src="/assets/js/main.js"></script>
+
+
+
+
+
+</body>
+
+
+</html>

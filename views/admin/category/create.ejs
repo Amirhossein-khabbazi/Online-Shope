@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrapfour.min.css" rel="stylesheet">
+    <link href="/css/bootstrapfour-rtl.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <% if( errors.length > 0)  { %>
+        <div>
+            <% errors.forEach(error=>{ %>
+            <div style="color: red; font-size: x-large; float: right; margin-right: 10px;">
+                <%- error.msg %>
+            </div>
+            <%})%>
+        </div>
+        <br>
+        <% }%>
+        <br>
+        <div id="createForm" class="dir">
+            <form action="/admin/categorys/create" method="POST">
+                <div class="form-group">
+                    <label for="name" class="control-label">عنوان دسته </label>
+                    <input type="text" name="title" id="title" class="form-control createInputs">
+                </div>
+                <br />
+
+                <div class="form-group row">
+                    <label for="name" class="control-label">نوع دسته </label>
+                    <select name="father" id="father" lass="form-control form-control-chosen input"
+                        onkeyup="underCate()" onclick="underCate()">
+                        <option value="true">دسته اصلی</option>
+                        <option value="false">زیر دسته</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label for="name" style="display: none;" id="fatherCategoriHead" class="control-label">دسته پدر
+                    </label>
+                    <select name="fatherCategori" id="fatherCategori" style="display: none;">
+                        <% categorise.forEach (categorise => { %>
+                        <option value="<%- categorise.id %>"><%- categorise.title %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <br><br>
+
+                <input type="submit" id="submit" value="ایجاد دسته" class="btn btn-success margin">
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/create.js"></script>
+</body>
+
+</html>

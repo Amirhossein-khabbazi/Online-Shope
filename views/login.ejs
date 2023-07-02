@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ورود و ثبت نام - مکس کوچ</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+
+    <!-- CSS
+	============================================ -->
+
+    
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <link rel="stylesheet" href="assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+
+</head>
+
+<body>
+
+    <div id="page">
+        <!-- Header Section Start -->
+        <%- include('./header' , {req , Sbrand :'' , category:'' , card:''}) %>
+
+        <!-- Header Section End -->
+
+        <!-- Page Title Section Start -->
+        <div class="page-title-section section">
+            <div class="page-title">
+                <div class="container">
+                    <h1 class="title">ورود فروشندگان</h1>
+                </div>
+            </div>
+            <div class="page-breadcrumb">
+                <div class="container">
+                    <ul class="breadcrumb">
+                        <li><a href="/">صفحه اصلی</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Page Title Section End -->
+
+
+        <!--Login Register section start-->
+        <div class="login-register-section section section-padding-bottom">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12" >
+                        <div class="row" >
+                            <div class="col-xl-5 col-lg-6">
+                                <!-- Login Form Start -->
+                                <div class="login-form-wrapper"  >
+                                    <h3 class="title">ورود</h3>
+                                    <form class="login-form" action="/login">
+                                        <div class="single-input mb-30">
+                                            <label for="username">شماره موبایل</label>
+                                            <input type="number" value="<%- oldData[0].phone %>" name="phone" id="username" placeholder="شماره موبایل">
+                                        </div>
+                                        <div class="single-input mb-30">
+                                            <label for="password">رمز عبور</label>
+                                            <input type="password" name="password" id="password"  placeholder="رمز عبور">
+                                        </div>
+										<input type="hidden" name="status" value="phoneLogin" />
+
+                                        <div class="single-input mb-30">
+                                            <div class="row">
+                                                <div class="col-sm-6 remember-me-wrap">
+                                                    <div class="checkbox-input">
+                                                        <input type="checkbox" name="login-form-remember" id="login-form-remember">
+                                                        <label for="login-form-remember">مرا به خاطر بسپار</label>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-sm-6 lost-your-password-wrap">
+                                                    <p>
+                                                        <a href="#" class="lost-your-password">فراموشی رمز عبور؟</a>
+                                                    </p>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                        <div class="single-input">
+                                            <button type="submit" class="btn btn-primary btn-hover-secondary btn-width-100">ورود</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- Login Form End -->
+                            </div>
+                         
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--Login Register section end-->
+
+        <%- include('./footer' ) %>
+
+
+        <!-- Scroll Top Start -->
+        <a href="#" class="scroll-top" id="scroll-top">
+            <i class="arrow-top fal fa-long-arrow-up"></i>
+            <i class="arrow-bottom fal fa-long-arrow-up"></i>
+        </a>
+        <!-- Scroll Top End -->
+    </div>
+
+    <%- include('./mobileHeader' , {req }) %>
+
+    <!-- JS
+============================================ -->
+
+    <!-- Vendors JS -->
+    <!-- <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+<script src="assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+<script src="assets/js/vendor/bootstrap.bundle.min.js"></script> -->
+
+    <!-- Plugins JS -->
+    <!-- <script src="assets/js/plugins/parallax.min.js"></script>
+<script src="assets/js/plugins/jquery.ajaxchimp.min.js"></script> -->
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <script src="assets/js/vendor/vendor.min.js"></script>
+    <script src="assets/js/plugins/plugins.min.js"></script>
+
+    <!-- Main Activation JS -->
+    <script src="assets/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+	<% if (error){ %>
+		<script>
+			Swal.fire(
+				'<%- error %>',
+				'درصورت مشکل با پشتیبانی تماس حاصل فرمایید',
+				'error'
+			)
+		</script>
+		<% }%>
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>سبد خرید - مکس کوچ</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <!-- <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-awesome-pro.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-gilroy.css"> -->
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <!-- <link rel="stylesheet" href="assets/css/plugins/select2.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/photoswipe.css">
+    <link rel="stylesheet" href="assets/css/plugins/photoswipe-default-skin.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick.css"> -->
+
+    <!-- Main Style CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <link rel="stylesheet" href="/assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+
+</head>
+
+<body>
+
+    <div id="page">
+        <!-- Header Section Start -->
+        <%- include('./header' , {req , Sbrand : '' , category : '' , card}) %>
+
+            <!-- Header Section End -->
+
+            <!-- Page Title Section Start -->
+            <div class="page-title-section section">
+                <div class="page-title">
+                    <div class="container">
+                        <h1 class="title">سبد خرید</h1>
+                    </div>
+                </div>
+                <div class="page-breadcrumb">
+                    <div class="container">
+                        <ul class="breadcrumb">
+                            <li><a href="/">صفحه اصلی</a></li>
+                            <li class="current">سبد خرید</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Title Section End -->
+
+
+            <!--Cart section start-->
+            <div class="cart-section section section-padding-bottom">
+                <div class="container faq-wrapper">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <!-- Cart Table -->
+                            <div class="cart-table table-responsive ">
+                                <h5 style="color:red; font-weight: bold">توجه: کاربر گرامی لطفا درصورت تغیر تعداد سفارش محصول، گزینه " بروزرسانی سبد خرید " را کلیک فرمائید درصورت رعایت نکردن مسئولیت هرگونه مشکل با خریدار میباشد</h5>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="pro-thumbnail">تصویر</th>
+                                            <th class="pro-title">محصول</th>
+                                            <th class="pro-price">قیمت</th>
+                                            <th class="pro-quantity">تعداد سفارش</th>
+                                            <th class="pro-quantity"> موجود در انبار</th>
+                                            <th class="pro-subtotal">مجموع</th>
+                                            <th class="pro-remove">حذف </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% card.card.forEach(card=> { %>
+                                            <tr>
+
+                                                <td class="pro-thumbnail"><a href="#"><img id="image-<%- card.pro.id %>"
+                                                            src="<%- card.pro.IMG1080 %>" alt="محصول"></a></td>
+                                                <td class="pro-title"><a href="#" id="title-<%- card.pro.id %>">
+                                                        <%- card.pro.title %>
+                                                    </a></td>
+                                                <td class="pro-price"><span id="price-<%- card.pro.id %>">
+                                                        <%- price(card.pro.price) %> تومان
+                                                    </span></td>
+                                                <td>
+                                                    <p>تعداد سفارش</p>
+                                                    <div><input dir="ltr" id="count-<%- card.id %>" keydown="javascript: return event.keyCode === 8 ||
+                                                    event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+                                                            onchange="upgradeCard('<%- card.id %>' , '<%- card.pro.id %>')"
+                                                            type="number" value="<%- card.count %>" min="1"></div>
+                                                    <p id="err-<%- card.id %>" style="color:red"></p>
+                                                    <% if(card.pro.exsist < card.count ){ %>
+                                                        <p id="err-zero-<%- card.id %>" style="color:red">این تعداد
+                                                            محصول در انبار موجود نیست</p>
+                                                        <% } %>
+                                                    
+                                                </td>
+                                                <% if(card.pro.exsist==0 ){ %>
+                                                    <td class="pro-subtotal"><span id="exsist-<%- card.pro.id %>"
+                                                            style="color: red"> ناموجود </span></td>
+                                                    <% } if(card.pro.exsist> 0 && card.pro.exsist < 3) { %>
+                                                            <td class="pro-subtotal"><span
+                                                                    id="exsist-<%- card.pro.id %>" style="color:orange">
+                                                                    فقط <%- card.pro.exsist %> عدد در انبار موجود
+                                                                        است</span></td>
+                                                            <% } if(card.pro.exsist > 2 ){ %>
+                                                                <td class="pro-subtotal"><span
+                                                                    id="exsist-<%- card.pro.id %>" style="color:green">
+                                                                   موجود
+                                                                        </span></td>
+
+                                                            <% } %>
+                                                                <td class="pro-subtotal"><span
+                                                                        id="sum-<%- card.pro.id %>">
+                                                                      جمعا  <%- price(card.pro.price * card.count) %> تومان
+                                                                    </span></td>
+                                                                <td class="pro-remove"><a
+                                                                        href="/buyer/removeFromCard/<%- card.pro.id %>"><i
+                                                                            class="far fa-trash-alt"></i></a></td>
+
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row max-mb-n30">
+
+                                <div class="col-lg-6 col-12 max-mb-30">
+                                    <!-- محاسبه حمل و نقل -->
+
+                                    <!-- Discount Coupon -->
+                                    <!-- <div class="discount-coupon">
+                                    <h4>کد کوپن تخفیف</h4>
+                                    <form action="#">
+                                        <div class="row max-mb-n30">
+                                            <div class="col-md-6 col-12 max-mb-30">
+                                                <input type="text" placeholder="کد تخفیف">
+                                            </div>
+                                            <div class="col-md-6 col-12 max-mb-30">
+                                                <button class="btn btn-primary btn-hover-secondary">اعمال کد</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> -->
+                                </div>
+
+                                <!-- Cart Summary -->
+                                <div class="col-lg-6 col-12 max-mb-30 d-flex">
+                                    <div class="cart-summary">
+                                        <div class="cart-summary-wrap">
+                                            <h4>خلاصه سبد خرید</h4>
+                                            <p>جمع کل <span>
+                                                    <%- price(card.total) %> تومان
+                                                </span></p>
+                                            <p>با احتساب مالیات 9.3%</p>
+                                            <p>هزینه حمل و نقل <span>رایگان</span></p>
+                                            <h2>گراند توتال <span>
+                                                    <%- price(card.total) %>
+                                                </span></h2>
+                                        </div>
+                                        <div class="cart-summary-button">
+                                            <a href="/buyer/fillShop"
+                                                class="btn btn-primary btn-hover-secondary"><button
+                                                    class="btn btn-primary btn-hover-secondary">پرداخت</button></a>
+                                            <a onClick="refresh()" class="btn btn-success btn-hover-secondary"
+                                                style="color: #fff">بروزرسانی سبد خرید</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <h4>قیمت کالاهایی که در انبار موجود نیست در فاکتور محاسبه نمیشود و ثبت سفارش نخواهند شد</h4>
+                                <h5 >دقت فرمائید با کلیک روی گزینه پرداخت کالاهایی که در انبار موجود میباشد پرداخت شده و ثبت سفارش خواهند شد </h5>
+                                <h3 style="color: orange;">درصورت مشکل در سبد خرید حتما با پشتیبانی تماس حاصل فرمائید</h3>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--Cart section end-->
+
+            <%- include('./footer' ) %>
+
+
+            <!-- Scroll Top Start -->
+            <a href="#" class="scroll-top" id="scroll-top">
+                <i class="arrow-top fal fa-long-arrow-up"></i>
+                <i class="arrow-bottom fal fa-long-arrow-up"></i>
+            </a>
+            <!-- Scroll Top End -->
+    </div>
+
+    <%- include('./mobileHeader' , {req , card}) %>
+
+
+        <script src="/assets/js/vendor/vendor.min.js"></script>
+        <script src="/assets/js/plugins/plugins.min.js"></script>
+
+        <!-- Main Activation JS -->
+        <script src="/assets/js/main.js"></script>
+        <script src="/js/card.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <% if(cardEmpty.length != 0) { %>
+            <script>
+                Swal.fire(
+                    'محصولات انتخاب شده در انبار موجود نمیباشد',
+                    'محصولات نا موجود در قیمت محاسبه نمیشوند',
+                    'warning'
+                )
+
+            </script>
+
+            <% } %>
+            <% if(long != '') { %>
+                <script>
+                    Swal.fire(
+                        '<%- long %>',
+                        '',
+                        'warning'
+                    )
+    
+                </script>
+    
+                <% } %>
+
+
+</body>
+
+
+</html>

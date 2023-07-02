@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrapfour.min.css" rel="stylesheet">
+    <link href="/css/bootstrapfour-rtl.min.css" rel="stylesheet">
+    <link href="/css/createcategory.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="dir">
+        <div id="icreateButtom">
+            <a href="/admin/categorys/create" class="btn btn-success margin"> ایجاد دسته بندی جدید</a>
+        </div>
+    </div>
+    
+    <% if (status == 0) { %> 
+    
+        <% category.forEach(cate =>{ %>
+        <div class="categoryDiv">
+            <div id="categoryTitle"><h2><%- cate.title %></h2></div>
+            <a href="/admin/categorys/goin/<%- cate.id %>"><div id="goIn"><h3>زیر دسته ها ></h3></div></a>
+            <div id="options">
+                <a href="/admin/categorys/remove/<%= cate.id %>" class="btn btn-danger margin"> حذف</a>
+            </div>
+        </div>
+        <% }) %>
+    <% } else { %>
+        <% category.forEach(cate =>{ %>
+            <div class="categoryDiv">
+                <div id="categoryTitle"><h2><%- cate.title %></h2></div>
+                <a href="/admin/categorys/goin/<%- cate.id %>"><div id="goIn"><h3>زیر دسته ها ></h3></div></a>
+                <div id="options">
+                    <a href="/admin/categorys/remove/<%- cate.id %>" class="btn btn-danger margin"> حذف</a>
+                </div>
+            </div>
+        <% }) %>
+    <% } %>
+    
+    <% if(category.length == 0) { %>
+        <h2 class="note"> زیر دسته ای وجود ندارد. موارد مربوط به دسته انتخاب شده تا بدینجا باید در این صفحه گذاشته شود</h2>
+    <% } %>
+    
+    
+
+</body>
+
+</html>

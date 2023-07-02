@@ -1,0 +1,209 @@
+
+<div class="header-section header-fluid sticky-header section">
+    <div class="header-inner">
+        <div class="container position-relative">
+            <div class="row justify-content-between align-items-center">
+
+                <!-- Header Logo Start -->
+                <div class="col-xl-3 col-auto">
+                    <div class="header-logo">
+                        <a href="/">
+                            <img class="dark-logo"  src="/assets/images/logo.jpg" alt="Learts Logo">
+                            <img class="light-logo"  src="/assets/images/logo.jpg" alt="Learts Logo">
+                        </a>
+                    </div>
+                </div>
+                <!-- Header Logo End -->
+
+                <!-- Header Main Menu Start -->
+                <div class="col d-none d-xl-block position-static">
+                    <nav class="site-main-menu">
+                        <ul>
+                            <li class=" position-static">
+                                <a href="/"><span class="menu-text">صفحه اصلی</span></a>
+                            </li>
+                            <li class="has-children">
+                                <a href="#"><span class="menu-text">همه محصولات</span></a>
+                                <span class="menu-toggle"><i class="far fa-angle-down"></i></span>
+                                <ul class="sub-menu">
+                                    <li><a href="/shop"><span class="menu-text">تابلو فرش</span></a></li>
+                                    <!-- <li><a href="#"><span class="menu-text">برترین هت</span></a></li> -->
+
+                                </ul>
+                            </li>
+
+                            <!-- if isAuth == false -->
+                            <% if(is_auth=='false' ) { %>
+                                <li class="has-children">
+                                    <a href="#"><span class="menu-text">ورود</span></a>
+                                    <span class="menu-toggle"><i class="far fa-angle-down"></i></span>
+                                    <ul class="sub-menu">
+                                        <li><a href="/buyer/buyerLogin"><span class="menu-text">ورود کاربران</span></a>
+                                        </li>
+                                        <li><a href="/login"><span class="menu-text">ورود فروشندگان </span></a></li>
+                                    </ul>
+                                </li>
+                                <% } %>
+                                    <li>
+                                        <a href="/brand"><span class="menu-text">برندها</span></a>
+
+                                    </li>
+
+                                    <li>
+                                        <a href="/contact-us"><span class="menu-text">ارتباطات و درخواست ها</span></a>
+                                        <span class="menu-toggle"><i class="far fa-angle-down"></i></span>
+
+                                    </li>
+                                    <% if(is_auth=='true' ) { %>
+                                        <li>
+                                            <a href="/logout"><span style="color: red;" class="menu-text">خروج از
+                                                    سیستم</span></a>
+                                            <span class="menu-toggle"><i class="far fa-angle-down"></i></span>
+
+                                        </li>
+                                        <% } %>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Header Main Menu End -->
+
+                <% if(is_auth=='true' && card.type !='seller' && card.type !='admin' && card !='' ) { %>
+
+                    <!-- Header Right Start -->
+                    <div class="col-xl-3 col-auto">
+                        <div class="header-right">
+                            <div class="inner">
+
+                                <!-- Header Cart Start -->
+                                <div class="header-cart">
+
+                                    <a class="header-cart-btn" href="/buyer/card"><span class="cart-count">
+                                            <%- card.card.length %>
+                                        </span><i class="far fa-shopping-cart"></i></a>
+
+                                    <!-- Header Mini Cart Start -->
+                                    <div class="header-mini-cart">
+                                        <div class="inner">
+
+                                            <!-- Header Mini Cart Product Start -->
+                                            <div class="mini-cart-products">
+                                                <% if (card.card.length==0 ) { %>
+                                                    <div class="mini-cart-product">
+                                                        <div class="content">
+                                                            <a href="/buyer/card" class="title">سبد خرید شما خالی
+                                                                میباشد</a>
+
+                                                        </div>
+                                                    </div>
+                                                    <% } else { %>
+
+                                                        <% card.card.forEach(card=> { %>
+                                                            <div class="mini-cart-product">
+                                                                <a href="/product_details/<%- card.pro.slug %>"
+                                                                    class="thumb"><img src="<%- card.pro.IMG1080 %>"
+                                                                        alt=""></a>
+                                                                <div class="content">
+                                                                    <a href="/product_details/<%- card.pro.slug %>"
+                                                                        class="title">
+                                                                        <%- card.pro.title %>
+                                                                    </a>
+                                                                    <span class="quantity"> <span class="price">
+                                                                            <%- price(card.pro.price) %> تومان
+                                                                        </span></span>
+                                                                    <span class="quantity"> <span class="price">
+                                                                            <%- card.count %> تعداد
+                                                                        </span></span>
+                                                                </div>
+                                                                <a method="post"
+                                                                    href="/buyer/removeFromCard/<%- card.pro.id %>"
+                                                                    class="remove"><i class="far fa-times"></i></a>
+                                                            </div>
+                                                            <% }) %>
+
+                                                                <% } %>
+
+                                            </div>
+
+                                            <!-- Header Mini Cart Product End -->
+
+                                            <!-- Header Mini Cart Footer Start -->
+                                            <div class="mini-cart-footer">
+                                                <div class="mini-cart-total">
+                                                    <b>مجموع (با احتساب مالیات):</b>
+                                                    <span class="amount">
+                                                        <%- price(card.total) %> تومان
+                                                    </span>
+                                                </div>
+                                                <div class="mini-cart-buttons">
+                                                    <% if(card.card.length==0 ) { %>
+                                                        <a href="/buyer/card"
+                                                            class="btn btn-primary btn-hover-secondary">نمایش سبد
+                                                            خرید</a>
+                                                        <% } %>
+                                                            <% if(card.card.length> 0 ) { %>
+                                                                <a href="/buyer/card"
+                                                                    class="btn btn-primary btn-hover-secondary">نمایش
+                                                                    سبد خرید و پرداخت </a>
+                                                                <% } %>
+
+                                                                    <!-- <a href="checkout.html" class="btn btn-primary btn-hover-secondary">پرداخت</a> -->
+                                                </div>
+                                            </div>
+                                            <!-- Header Mini Cart Footer End -->
+                                        </div>
+                                    </div>
+                                    <!-- Header Mini Cart End -->
+                                </div>
+                                <!-- Header Cart End -->
+                                <div class="header-login">
+                                    <a href="/buyer"><i class="far fa-user-circle"></i></a>
+                                </div>
+                                <% } %>
+                                    <% if(card.type=='seller' ) { %>
+                                        <div class="header-login">
+                                            <a href="/sellerPanel"><i class="far fa-user-circle"></i></a>
+                                        </div>
+                                        <% } %>
+                                        <% if(card.type=='admin' ) { %>
+                                            <div  class="header-login">
+                                                <a href="/admin"><i class="far fa-user-circle"></i></a>
+                                            </div>
+                                            <% } %>
+                                        
+                                            <!-- Header Login Start -->
+
+                                            <!-- Header Login End -->
+
+                                            <!-- Header Search Start -->
+                                            <div class="header-search">
+                                                <button class="header-search-toggle"><i
+                                                        class="far fa-search"></i></button>
+                                                <div class="header-search-form">
+                                                    <form action="/shop/<%- Sbrand %>" id="searchForm" method="GET">
+                                                        <input type="text" value="<%- req.query.search %>" name="search" placeholder="جستجو...">
+                                                        <button type="submit"><i class="fas fa-search"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <!-- Header Search End -->
+
+
+                                            <!-- Header Mobile Menu Toggle Start -->
+                                            <div class="header-mobile-menu-toggle d-xl-none ml-sm-2">
+                                                <button class="toggle">
+                                                    <i class="icon-top"></i>
+                                                    <i class="icon-middle"></i>
+                                                    <i class="icon-bottom"></i>
+                                                </button>
+                                            </div>
+                                            <!-- Header Mobile Menu Toggle End -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Header Right End -->
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrapfour.min.css" rel="stylesheet">
+    <link href="/css/bootstrapfour-rtl.min.css" rel="stylesheet">
+    <title>مدیریت نظرات</title>
+</head>
+
+<body>
+    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom-1">
+        <h2>مدیریت نظرات</h2>
+        
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>نام و نام خانوادگی</th>
+                    <th>محصول</th>
+                    <th>شماره تماس</th>
+                    <th>متن کامنت</th>
+                    <th>تنظیمات</th>
+                </tr>
+            </thead>
+            <% comment.docs.forEach(com=> { %>
+            <tbody>
+
+                <tr>
+                    <td><a href="#"> <%- com.fullName %></a></td>
+                    <td><%- com.product.title %></td>
+                    <td><%- com.phone %></td>
+                    <td>
+                        <%- com.body %>
+                    </td>
+                    
+                    <td>
+                        <form action="/admin/comment/remove/<%- com.id %>" method="post">
+                            <div class="btn-group btn-group-sm">
+                                <% if(com.permission) { %>
+                                    <a href="/admin/comment/promiss/<%- com.id %>" class="btn btn-success">مجاز</a>
+                                <% }else { %>
+                                    <a href="/admin/comment/promiss/<%- com.id %>" class="btn btn-warning">اجازه دادن</a>
+                                    <% } %>
+                                <button type="submit" class="btn btn-danger">حذف</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+
+            </tbody>
+            <% }) %>
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>

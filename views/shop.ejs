@@ -1,0 +1,419 @@
+
+<%
+
+let mc = []
+if(req.query.multiCategory){
+	for (let i in req.query) {
+		mc.push(i)
+	}
+
+}
+
+%>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>فروشگاه - مکس کوچ</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <!-- <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-awesome-pro.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-gilroy.css"> -->
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <!-- <link rel="stylesheet" href="assets/css/plugins/select2.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/photoswipe.css">
+    <link rel="stylesheet" href="assets/css/plugins/photoswipe-default-skin.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick.css"> -->
+
+    <!-- Main Style CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <link rel="stylesheet" href="/assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+
+</head>
+
+<body>
+
+    <div id="page">
+        <!-- Header Section Start -->
+        <%- include('./header' , {req , Sbrand , category , card}) %>
+
+        <!-- Header Section End -->
+
+        <!-- Page Title Section Start -->
+        <div class="page-title-section section">
+            <div class="page-title">
+                <div class="container">
+                    <h1 class="title">فروشگاه</h1>
+                </div>
+            </div>
+            <div class="page-breadcrumb">
+                <div class="container">
+                    <ul class="breadcrumb">
+                        <li><a href="index.html">صفحه اصلی</a></li>
+                        <li class="current">فروشگاه</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Page Title Section End -->
+
+        <!-- Shop Product Section Start -->
+        <div class="section section-padding-bottom">
+            <div class="container">
+                <div class="row max-mb-n50">
+
+                    <div class="col-xl-9 col-lg-8 col-12 order-lg-2 max-mb-50">
+
+                        <!-- Course Top Bar Start -->
+                        <div class="row justify-content-between align-items-center max-mb-20">
+                            <div class="col-sm-auto col-12 max-mb-10">
+                                <!-- <p class="result-count">ما پیدا کردیم<span>22</span> دوره های موجود برای شما</p> -->
+                            </div>
+                            <!-- <div class="col-sm-auto col-12 max-mb-10">
+                                <select class="sort-by">
+                                    <option selected="selected">پشفرض</option>
+                                    <option value="popularity">محبوبیت</option>
+                                    <option value="date">اخیر</option>
+                                    <option value="price">قیمت از پایین به بالا</option>
+                                    <option value="price-desc">قیمت از بالا به پایین</option>
+                                </select>
+                            </div> -->
+                        </div>
+                        <!-- Course Top Bar End -->
+
+                        <!-- Product Wrapper Start -->
+                        <div class="row row-cols-xl-3 row-cols-sm-2 row-cols-1 max-mb-n40">
+							<% product.docs.forEach(pro=>{ %>
+                            <!-- Product Start -->
+                            <div class="col max-mb-40" data-aos="fade-up">
+                                <div class="product">
+                                    <div class="thumbnail">
+                                        <a href="/product_details/<%- pro.slug %>" class="image"><img src="<%- pro.IMG1080 %>" alt=""></a>
+                                        <div class="actions">
+                                            <a href="#quick-view-modal-container-<%- pro.id %>" data-toggle="modal" class="action hintT-left hintT-primary" data-hint="نمایش سریع"><i class="far fa-search"></i></a>
+                                            <% if(is_auth == 'true') { %>
+                                            <button  onclick="addToCardQ('<%- pro.id %>' , '<%- pro.exsist %> ')" class="action hintT-left hintT-primary" data-hint="افزودن به سبد"><i class="far fa-shopping-cart"></i></button>
+                                            <% } else { %>
+                                            <a href="/login" class="action hintT-left hintT-primary" data-hint="افزودن به سبد"><i class="far fa-shopping-cart"></i></a>
+                                            <% } %>
+                                            <!-- <a href="JavaScript:Void(0);" class="action hintT-left hintT-primary" data-hint="افزودن به علاقه مندیها"><i class="far fa-heart"></i></a> -->
+                                            <!-- <a href="JavaScript:Void(0);" class="action hintT-left hintT-primary" data-hint="مقایسه کردن"><i class="far fa-signal"></i></a> -->
+                                        </div>
+                                    </div>
+                                    <div class="info">
+                                        <h3 class="title"><a href="/product_details/<%- pro.slug %>"><%- pro.title %></a></h3>
+                                        <h7 dir="ltr"><a href="/product_details/<%- pro.slug %>"><%- pro.size %></a></h7>
+                                        <span class="price"><%- price(pro.price) %> تومان</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product End -->
+							<% }) %>
+							
+                            <!-- Product Start -->
+                            
+                            <!-- Product End -->
+
+                        </div>
+                        <!-- Product Wrapper End -->
+                        <!-- Pagination Start -->
+                        <%- include(('./pagination.ejs') ,{ pagination : product}) %>
+
+                        <!-- <div class="row max-mt-50">
+                            <div class="col">
+
+                                <ul class="pagination center">
+                                    <li><a href="#" class="prev">قبلی</a></li>
+                                    <li><a href="#" class="active">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#" class="next">بعدی</a></li>
+                                </ul>
+
+                            </div>
+                        </div> -->
+                        <!-- Pagination End -->
+                    </div>
+
+                    <!-- Sidebar Widget Wrapper Start -->
+                    <div class="col-xl-3 col-lg-4 col-12 order-lg-1 max-mb-50">
+                        <div class="sidebar-widget-wrapper pr-0">
+
+                            <!-- Widget Search Start -->
+                            <div class="sidebar-widget">
+                                <h3 class="sidebar-widget-title">جستجو</h3>
+                                <div class="sidebar-widget-content">
+                                    <div class="sidebar-widget-search">
+                                        <form action="#">
+                                            <input type="text" placeholder="جستجو...">
+                                            <button><i class="fas fa-search"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Widget Search End -->
+
+                            <!-- Widget Price Filter Start -->
+                            <!-- <div class="sidebar-widget">
+                                <h3 class="sidebar-widget-title">فیلتر با قیمت</h3>
+                                <div class="sidebar-widget-content">
+                                    <div class="sidebar-widget-price-filter">
+                                        <div class="price-range" data-min="0" data-max="100" data-from="0" data-to="100"></div>
+                                        <button class="btn btn-primary btn-hover-secondary btn-price-filter">فیلتر</button>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- Widget Price Filter End -->
+
+                            <!-- Widget Product Start -->
+                            <div class="sidebar-widget">
+                                <h3 class="sidebar-widget-title">محصولات محبوب</h3>
+                                <div class="sidebar-widget-content">
+                                    <div class="sidebar-widget-products">
+                                        <% Pproduct.forEach(pro=>{  %>  
+
+                                        <div class="widget-product">
+                                            <a href="/product_details/<%- pro.slug %>" class="thumbnail"><img src="<%- pro.IMG1080 %>" alt=""></a>
+                                            <div class="info">
+                                                <h6 class="title"><a href="/product_details/<%- pro.slug %>"><%- pro.title %></a></h6>
+                                                <span class="rating"><span></span></span>
+                                                <span class="price"><%- price(pro.price) %>تومان</span>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                   
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Widget Product End -->
+
+                            <!-- Widget Tags Start -->
+                            <div class="sidebar-widget">
+                                <h3 class="sidebar-widget-title">برچسب های محبوب</h3>
+                                <div class="sidebar-widget-content">
+                                    <div class="tagcloud">
+                                        <a href="/shop">همه برچسب ها</a>
+                                        <br>
+                                        <br>
+                                        <% category.forEach(cat =>{ %>   
+                                        <a href="/shop?search=&category=<%- cat.id %>"><%- cat.title %></a>
+                                        <% }) %>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Widget Tags End -->
+
+                        </div>
+                    </div>
+                    <!-- Sidebar Widget Wrapper End -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Shop Product Section End -->
+
+        <%- include('./footer' ) %>
+
+		<% product.docs.forEach(pro=>{ %>
+
+        <!-- Modal Area Start -->
+        <div class="modal fade quick-view-modal-container" id="quick-view-modal-container-<%- pro.id %>" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="بستن">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="row max-mb-n30">
+
+                                <!-- Product Images Start -->
+                                <div class="col-lg-6 col-12 max-mb-30">
+                                    <div class="single-product-image">
+                                        <img src="<%- pro.IMG1080 %>" alt="book">
+                                        <div class="product-badges">
+                                            <span class="onsale">نمایش سریع</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Images End -->
+
+
+
+
+
+                                <!-- Product Summery Start -->
+                                <div class="col-lg-6 col-12 overflow-hidden max-mb-30">
+                                    <div class="single-product-content">
+                                        <h3 class="title"><%- pro.title %></h3>
+                                        <span class="prices">
+                                    <span class="price-new"><%- pro.price %> تومان</span>
+                                        <!-- <span class="price-old">69000 تومان</span> -->
+                                        </span>
+                                        <div class="product-ratings">
+                                            <span class="star-rating">
+                                        <span class="rating-active">امتیاز</span>
+                                            </span>
+                                            <a href="/product_details/<%- pro.slug %>" class="review-link">(<span class="count"></span> مشاهده نظرات و پسندیدن محصول)</a>
+                                        </div>
+                                        <div class="product-description">
+											<p><%- pro.body %></p>
+                                        </div>
+                                        <div class="quantity-button-wrapper">
+                                            <div class="quantity">
+                                                <label>تعداد </label>
+                                                <input id="number-<%- pro.id %>" value="1">
+
+                                            </div>
+                                            <p class="stock in-stock"><%- pro.exsist %> در انبار</p>
+                                        </div>
+                                        <div class="product-action">
+											<% if(pro.exsist !=0) { %>
+                                                <% if(is_auth == 'true') { %>
+                                                        <button onclick="addToCardFromQ('<%- pro.id %>' , '<%- pro.exsist %> ')" class=" btn btn-primary btn-hover-secondary" data-dismiss="modal">افزودن به سبد</button>
+                                                <% } else { %>
+                                                    <a href="/login"><button aria-disabled="true" class="btn btn-primary btn-hover-secondary">ابتدا باید وارد شوید</button></a>
+                                                <% } %>
+											<% } else { %>
+												<button aria-disabled="true" class="btn btn-primary btn-hover-secondary">این محصول در حال حاظر موجود نیست</button>
+											<% } %>
+                                            <!-- <button class="btn btn-wishlist btn-box"><i class="fal fa-heart"></i></button>
+                                            <button class="btn btn-compare btn-box"><i class="fal fa-random"></i></button> -->
+                                        </div>
+
+                                        <div class="product-meta">
+                                            <div class="meta-item">
+                                                <h6>اندازه:</h6>
+                                                <div class="meta-content">
+                                                    <span class="sku"><%- pro.size %></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="meta-item">
+                                                <h6> تعداد موجود:</h6>
+												<% if(pro.exsist !=0) { %>
+                                                <div class="meta-content">
+                                                    <a href="#" rel="tag"><%- pro.exsist %></a>
+                                                </div>
+												<% } else { %>
+													<div class="meta-content">
+														<a href="#" style="color:red" rel="tag">موجود نمی باشد</a>
+													</div>
+												<% } %>
+                                            </div>
+                                            <div class="meta-item">
+                                                <h6>میزان استفاده از ابریشم:</h6>
+												<% if(pro.abrishamUsed=='TM' ){ %>  <a href="#" rel="tag">خیلی زیاد </a>  <% } %>
+													<% if(pro.abrishamUsed=='M' ) { %>  <a href="#" rel="tag">زیاد </a> <% } %>
+															<% if(pro.abrishamUsed=='N' ) { %>  <a href="#" rel="tag">متوسط </a> <% } %>
+																	<% if(pro.abrishamUsed=='L' ) { %>  <a href="#" rel="tag"> کم</a> <% } %>
+																			<% if(pro.abrishamUsed=='NU' ) { %> <a href="#" rel="tag"> استفاده نشده</a> 
+																				 <% } %>
+																					%>
+											 	<div class="meta-content"></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="entry-product-share">
+                                            <h6>اشتراک:</h6>
+                                            <div class="author-social-networks">
+                                                <div class="inner">
+
+                                                    <a class="hint--bounce hint--top hint--primary" aria-label="فیس بوک" href="#" target="_blank">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </a>
+
+                                                    <a class="hint--bounce hint--top hint--primary" aria-label="توییتر" href="#" target="_blank">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </a>
+
+                                                    <a class="hint--bounce hint--top hint--primary" aria-label="لینکدین" href="#" target="_blank">
+                                                        <i class="fab fa-linkedin"></i>
+                                                    </a>
+
+                                                    <a class="hint--bounce hint--top hint--primary" aria-label="تامبلر" href="#" target="_blank">
+                                                        <i class="fab fa-tumblr-square"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Summery End -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Modal Area End -->
+		<% }) %>
+
+        <!-- Scroll Top Start -->
+        <a href="#" class="scroll-top" id="scroll-top">
+            <i class="arrow-top fal fa-long-arrow-up"></i>
+            <i class="arrow-bottom fal fa-long-arrow-up"></i>
+        </a>
+        <!-- Scroll Top End -->
+    </div>
+
+    <%- include('./mobileHeader' , {req , card}) %>
+
+
+    <!-- JS
+============================================ -->
+
+    <!-- Vendors JS -->
+    <!-- <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+<script src="assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+<script src="assets/js/vendor/bootstrap.bundle.min.js"></script> -->
+
+    <!-- Plugins JS -->
+    <!-- <script src="assets/js/plugins/parallax.min.js"></script>
+<script src="assets/js/plugins/jquery.ajaxchimp.min.js"></script> -->
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <script src="/assets/js/vendor/vendor.min.js"></script>
+    <script src="/assets/js/plugins/plugins.min.js"></script>
+
+    <!-- Main Activation JS -->
+    <script src="/assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/js/coustomquik.js"></script>
+
+
+
+
+
+</body>
+
+
+</html>

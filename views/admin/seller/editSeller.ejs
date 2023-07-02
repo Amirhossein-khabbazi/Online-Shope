@@ -1,0 +1,89 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrapfour.min.css" rel="stylesheet">
+    <link href="/css/bootstrapfour-rtl.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <% if( errors.length > 0)  { %>
+        <div class="row">
+            <% errors.forEach(error=>{ %>
+            <div class="col-md-12" style="color: red; font-size: x-large; float: right; margin-right: 10px;">
+                <%- error.msg %>
+            </div>
+            <%})%>
+        </div>
+        <br>
+        <% }%>
+
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <h2>ویرایش کاربر</h2>
+        </div>
+        <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="/admin/users/edit/<%- user.id %>?_method=put" novalidate>
+
+
+
+            <div class="form-group">
+                <label for="name" class="control-label">نام </label>
+                <input id="name" type="text" class="form-control" name="name" value="<%- user.name %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="family" class="control-label">نام خانوادگي </label>
+                <input id="family" type="text" class="form-control" name="family" value="<%- user.family %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="userName" class="control-label">نام كاربری</label>
+                <input id="userName" type="text" class="form-control" name="userName" value="<%- user.userName %>"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="brand" class="control-label">برند</label>
+                <input id="brand" type="text" class="form-control" name="brand" value="<%- user.brand %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="control-label">شماره موبایل</label>
+                <input id="phone" type="number" class="form-control" name="phone" value="<%- user.phone %>" required="">
+            </div>
+            <div class="form-group">
+                <label for="phone" class="control-label">رمز عبور</label>
+                <input id="phone" type="password" class="form-control" name="password" value="<%- user.password %>" required="">
+            </div>
+
+            <div class="form-group">
+                <label for="Slogan" class="control-label">شعار</label>
+                <input id="Slogan" type="Slogan" class="form-control" name="Slogan" value="<%- user.Slogan %>" >
+            </div>
+
+            <div class="form-group">
+                <label for="bankNum" class="control-label">شماره حساب</label>
+                <input id="bankNum" type="bankNum" class="form-control" name="bankNum" value="<%- user.bankNum %>" >
+            </div>
+
+            <div class="form-group">
+                <label for="address" class="control-label">آدرس</label>
+                <input id="address" type="address" class="form-control" name="address" value="<%- user.address %>" >
+            </div>
+
+            <div class="col">
+                <label for="logo" class="control-label font-weight-bold">تصویر لوگو</label>
+                <input type="file" class="form-control" name="logo" id="logo" multiple>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">ویرایش کاربر</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

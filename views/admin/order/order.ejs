@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrapfour.min.css" rel="stylesheet">
+    <link href="/css/bootstrapfour-rtl.min.css" rel="stylesheet">
+    <title>مدیریت سفارش ها</title>
+</head>
+
+<body>
+    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom-1">
+        <h2>مدیریت سفارشات باز</h2>
+        <div class="btn-group">
+            <a href="/admin/order/orderhistory" class="btn btn-sm btn-primary">تاریخچه سفارشات</a>
+            <a href="/admin/products" class="btn btn-sm btn-danger">بخش فروشندگان</a>
+            <a href="/admin" class="btn btn-sm btn-warning">صفحه اصلی</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>نام فروشنده</th>
+                    <th>نام خریدار</th>
+                    <th>عنوان محصول</th>
+                    <th>شماره موبایل خریدار</th>
+                    <th>آدرس خریدار</th>
+                    <th>تعداد</th>
+                    <th>تاریخ</th>
+                    <th>قیمت خالص</th>
+                </tr>
+            </thead>
+            <% order.docs.forEach(order=> { %>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <% if(order.seller) { %>
+                            <%- order.seller.fullName %>
+                            <% } else { %>
+                                حذف شده
+                            <% } %>
+                        </td>
+                        <td>
+                            <%- order.fullName %>
+                        </td> 
+                        <td>
+                            <% if(order.product) { %>
+                            <%- order.product.title %>
+                            <% } else { %>
+                                حذف شده
+                            <% } %>
+                        </td>
+                        <td>
+                            <%- order.phone %>
+                        </td>
+                        <td>
+                            <%- order.address %>
+                        </td>
+                        <td>
+                            <%- order.count %>
+                        </td>
+                        <td>
+                            <%- date(order.createdAt).format('jYYYY/jMM/jDD   |  HH:mm:ss') %>
+                        </td>
+                        <td>
+                            <%- order.price %>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <% }) %>
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>

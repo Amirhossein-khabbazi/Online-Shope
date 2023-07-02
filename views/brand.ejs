@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>خانه 9 - مکس کوچ</title>
+        <meta name="robots" content="noindex, follow" />
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+    
+        <!-- CSS
+        ============================================ -->
+    
+        
+    
+        <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+        <link rel="stylesheet" href="assets/css/vendor/vendor.min.css">
+        <link rel="stylesheet" href="assets/css/plugins/plugins.min.css">
+        <link rel="stylesheet" href="assets/css/style.min.css">
+    
+    </head>
+    
+<body>
+
+    <%- include('./header' , {req , Sbrand :'' , category , card}) %>
+
+
+    <div class="course-section section section-fluid section-padding">
+        <div class="container">
+            <!-- Section Title Start -->
+            <div class="section-title-two text-center" data-aos="fade-up">
+                <span class="sub-title">از برند محبوبتان خریداری کنید</span>
+                <h2 class="title fz-48">برند های فعال</h2>
+            </div>
+            <!-- Section Title End -->
+
+            <div class="row row-cols-xl-4 row-cols-lg-2 row-cols-md-2 row-cols-1 max-mb-n30">
+
+                <% user.forEach(brand =>{ %> 
+                <div class="col max-mb-30">
+                    <div class="course-6">
+                        <div class="thumbnail">
+                            <a class="image" href="/shop/<%- brand.userName %>">
+                                <img style="width: 443px; height: 500px;" src="<%- brand.logo %>" alt="">
+                                <div class="course-overlay-bg"></div>
+                            </a>
+                        </div>
+                        <div class="info">
+                            <div class="course-caption-main">
+                                <span class="price"><%- brand.fullName %><span> </span></span>
+                                <h3 class="title"><a href="/shop/<%- user.userName %>"><%- brand.brand %></a></h3>
+                            </div>
+                            <div class="course-caption-collapse">
+                                <ul class="meta">
+                                    <li><i class="far fa-file-alt"></i><%- brand.n_product %> محصول</li>
+                                    <!-- <li><i class="far fa-user-alt"></i>51 دانش آموز</li> -->
+                                </ul>
+                                <div class="desc">
+                                    <p><%- brand.Slogan %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            
+            </div>
+
+            
+        </div>
+    </div>
+    <%- include('./mobileHeader' , {req , card}) %>
+    <%- include('./footer' ) %>
+
+
+    <script src="assets/js/vendor/vendor.min.js"></script>
+    <script src="assets/js/plugins/plugins.min.js"></script>
+
+    <!-- Main Activation JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

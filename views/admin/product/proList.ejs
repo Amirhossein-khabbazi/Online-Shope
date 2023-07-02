@@ -1,0 +1,97 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrapfour.min.css" rel="stylesheet">
+    <link href="/css/bootstrapfour-rtl.min.css" rel="stylesheet">
+    <title>مدیریت محصولات</title>
+</head>
+
+<body>
+    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom-1">
+        <h2>مدیریت فروشندگان</h2>
+        <div class="btn-group">
+            <a href="/admin/products/create" class="btn btn-sm btn-primary">ایجاد محصول جدید</a>
+            <a href="/admin/users" class="btn btn-sm btn-danger">بخش فروشندگان</a>
+            <a href="/admin" class="btn btn-sm btn-warning">صفحه اصلی</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>تصویر</th>
+                    <th>نام محصول</th>
+                    <th> فروشنده</th>
+                    <th>تعداد موجود</th>
+                    <th>تعداد درحال سفارش</th>
+                    <th>تعداد فروخته شده</th>
+                    <th>قیمت</th>
+                    <th>تنظیمات</th>
+                </tr>
+            </thead>
+            <% product.forEach(pro=> { %>
+            <tbody>
+                <% if(!pro.seller.ban) { %> 
+                <tr>
+                    <td><img src="<%- pro.thump %>" alt=""></td>
+                    <td><a href="#"> <%- pro.title %></a></td>
+                    <td><%- pro.seller.fullName %></td>
+                    <td><%- pro.exsist %></td>
+                    <td>
+                        <%- pro.inOrder %>
+                    </td>
+                    <td>
+                        <%- pro.solde %>
+                    </td>
+                    <td>
+                        <%- pro.price %>
+                    </td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+
+
+                            <% if (pro.promiss == true) { %>
+                            <form action="/admin/products/dispromiss/<%- pro.id %>" method="post">
+                                <div class="btn-group btn-group-sm">
+                                    <button type="submit" class="btn btn-success">رد اجازه برای نمايش</button>
+                                </div>
+                            </form>
+                            <% } %>
+                            <% if (pro.promiss == false) { %>
+                            <form action="/admin/products/promiss/<%- pro.id %>" method="post">
+                                <div class="btn-group btn-group-sm">
+                                    <button type="submit" class="btn btn-warning"> اجازه برای نمايش</button>
+                                </div>
+                            </form>
+                            <% } %>
+                            <form action="#" method="post">
+                                <div class="btn-group btn-group-sm">
+                                    <a href="/admin/products/edit/<%- pro.id %>" class="btn btn-success"> ویرایش این
+                                        محصول</a>
+                                </div>
+                            </form>
+
+                            <form action="/admin/products/remove/<%- pro.id %>" method="post">
+                                <div class="btn-group btn-group-sm">
+
+                                    <button type="submit" class="btn btn-danger">حذف</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </td>
+                </tr>
+                <% } %>
+
+            </tbody>
+            <% }) %>
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>

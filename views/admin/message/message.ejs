@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrapfour.min.css" rel="stylesheet">
+    <link href="/css/bootstrapfour-rtl.min.css" rel="stylesheet">
+    <title>مدیریت پیغام ها</title>
+</head>
+
+<body>
+    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom-1">
+        <h2>مدیریت پیغام ها</h2>
+        <div class="btn-group">
+            <a href="/admin/message/create" class="btn btn-sm btn-primary">ایجاد پیغام جدید</a>
+            <a href="/admin/contact" class="btn btn-sm btn-danger">بخش ارتباط با ما</a>
+            <a href="/admin" class="btn btn-sm btn-warning">صفحه اصلی</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>فرستنده پیام</th>
+                    <th>شماره تلفن</th>
+                    <th>دریافت کنندگان</th>
+                    <th>متن پیام</th>
+                    <th>تنظیمات</th>
+                </tr>
+            </thead>
+            <% message.docs.forEach(mes=> { %>
+                <tbody>
+
+                    <tr>
+                        <td><a href="#">
+                                <%- mes.admin.fullName %>
+                            </a></td>
+                        <td>
+                            <%- mes.admin.phone %>
+                        </td>
+                        <td>
+                            <% if(mes.type == 2){ %>
+                                <%- mes.user.fullName %>
+                            <% } else { %>
+                                به همه
+                                <% } %>
+                        </td>
+                        <td>
+                            <%- mes.body %>
+                        </td>
+                        <td>
+                            <form action="/admin/message/remove/<%- mes.id %>" method="post">
+                                <div class="btn-group btn-group-sm">
+                                    <a href="/admin/message/edite/<%- mes.id %>" class="btn btn-primary">ویرایش</a>
+                                    <button type="submit" class="btn btn-danger">حذف</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <% }) %>
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>
